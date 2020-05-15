@@ -112,17 +112,17 @@ class UsersController extends Controller
 
         $cre = $request->only('token');
 
-        $token = DB::table("table__token")->where('token', $request->cre)->first();
+        $token = DB::table("table__token")->where('token', $cre)->first();
         // $token = Token::where('token', $cre)->get();
 
-        return response()->json(["id" => $token->id]);
+      //  return response()->json(["id" => $token->id]);
 
-        // $user = DB::table("table__h_s_v_users")->where('id', $token->cre)->first();
+        $user = DB::table("table__h_s_v_users")->where('id', $token->id)->first();
 
-        // return response()->json([
-        //     "name" => $user->name,
-        //     "email" => $user->email
-        // ]);
+        return response()->json([
+            "name" => $user->name,
+            "email" => $user->email
+        ]);
 
 
     }
